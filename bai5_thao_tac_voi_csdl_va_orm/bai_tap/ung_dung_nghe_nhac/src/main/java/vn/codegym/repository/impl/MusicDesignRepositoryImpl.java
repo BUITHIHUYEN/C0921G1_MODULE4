@@ -3,29 +3,37 @@ package vn.codegym.repository.impl;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.springframework.stereotype.Repository;
+import org.springframework.web.bind.annotation.RequestMapping;
 import vn.codegym.model.MusicDesign;
 import vn.codegym.repository.ConnectionUtil;
 import vn.codegym.repository.IMusicDesignRepository;
 
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import java.util.List;
-
+@Repository
 public class MusicDesignRepositoryImpl implements IMusicDesignRepository {
     private static SessionFactory sessionFactory;
     @PersistenceContext
+    EntityManager entityManager;
     @Override
     public List<MusicDesign> findAll() {
-        TypedQuery<MusicDesign> query = ConnectionUtil.entityManager.createQuery("SELECT s FROM MusicDesign as s",MusicDesign.class);
+        TypedQuery<MusicDesign> query = ConnectionUtil.entityManager.createQuery("SELECT m FROM MusicDesign as m",MusicDesign.class);
         return query.getResultList();
     }
 
     @Override
     public MusicDesign findById(Long id) {
-        TypedQuery<MusicDesign> query = ConnectionUtil.entityManager.createQuery("SELECT s FROM MusicDesign  as s where s.id = :id",MusicDesign.class);
+        TypedQuery<MusicDesign> query = ConnectionUtil.entityManager.createQuery("SELECT m FROM MusicDesign  as m where m.id = :id",MusicDesign.class);
         query.setParameter("id",id);
-        return query.getSingleResult();
+        try {
+            return query.getSingleResult();
+        }catch (NoResultException exception){
+            return  null;
+        }
     }
 
     @Override
@@ -54,11 +62,19 @@ public class MusicDesignRepositoryImpl implements IMusicDesignRepository {
 
     @Override
     public void save(MusicDesign musicDesign) {
-
+        if (musicDesign.getId()!=null){
+            entityManager.merge(musicDesign);
+        } else {
+            entityManager.persist(musicDesign);
+        }
     }
 
     @Override
-    public void remove(MusicDesign musicDesign) {
+    public void remove(Long id ) {
+        MusicDesign musicDesign = findById(id);
+        if (musicDesign!=null){
+            entityManager.remove(musicDesign);
+        }
 
     }
 }

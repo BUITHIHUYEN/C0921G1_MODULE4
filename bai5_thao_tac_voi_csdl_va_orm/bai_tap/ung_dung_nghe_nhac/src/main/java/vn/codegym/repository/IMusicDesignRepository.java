@@ -9,6 +9,6 @@ public interface IMusicDesignRepository {
     MusicDesign findById(Long id);
     MusicDesign updateNew(MusicDesign musicDesign);
     void save(MusicDesign musicDesign);
-    void remove (MusicDesign musicDesign);
+    void remove (Long id);
 
 }

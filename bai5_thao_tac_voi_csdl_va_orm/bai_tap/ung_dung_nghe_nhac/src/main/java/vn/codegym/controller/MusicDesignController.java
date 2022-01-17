@@ -16,37 +16,48 @@ public class MusicDesignController {
     IMusicDesignService iMusicDesignService;
     @GetMapping
     public ModelAndView showList() {
-        ModelAndView modelAndView = new ModelAndView("musicDesignList/list");
         List<MusicDesign> musicDesignList = iMusicDesignService.findAll();
+        ModelAndView modelAndView = new ModelAndView("/musicDesign/list");
         modelAndView.addObject("musicDesignList", musicDesignList);
         return modelAndView;
     }
+
+    @GetMapping("/create-musicDesign")
+    public ModelAndView showCreateForm() {
+//        ModelAndView modelAndView = new ModelAndView("/musicDesign/create");
+//        modelAndView.addAllObjects("musicDesignList",new MusicDesign());
+//        return modelAndView;
+        return new ModelAndView("musicDesign/create", "musicDesign", new MusicDesign());
+    }
+
+    @PostMapping("/create-musicDesign")
+    public ModelAndView saveMusicDesign(@ModelAttribute("musicDesignList") MusicDesign musicDesign) {
+        iMusicDesignService.save(musicDesign);
+        ModelAndView modelAndView = new ModelAndView("musicDesign/create");
+        modelAndView.addObject("musicDesignList", new MusicDesign());
+        modelAndView.addObject("mess", "New song created sucessfully");
+        return modelAndView;
+    }
+
+
     @GetMapping("{id}")
     public ModelAndView showInformation(@PathVariable Long id) {
         ModelAndView modelAndView = new ModelAndView("musicDesignList/info");
-        MusicDesign musicDesign = iMusicDesignService.findOne(id);
-        modelAndView.addObject("musicDesign", musicDesign);
+        MusicDesign musicDesign = iMusicDesignService.findById(id);
+        modelAndView.addObject("musicDesignList", musicDesign);
         return modelAndView;
     }
+
+
 
     @PostMapping
     public String updateMusicDesign(MusicDesign musicDesign) {
         iMusicDesignService.save(musicDesign);
         return "redirect:/musicDesignList";
     }
-    @GetMapping("/create")
-    public ModelAndView showCreate() {
-        return new ModelAndView("musicDesignList/create", "musicDesignList", new MusicDesign());
-    }
 
-    @PostMapping("create")
-    public ModelAndView create(@ModelAttribute("musicDesignList") MusicDesign musicDesignList) {
-        iMusicDesignService.save(musicDesignList);
-        ModelAndView modelAndView = new ModelAndView("musicDesignList/create");
-        modelAndView.addObject("musicDesignList", new MusicDesign());
-        modelAndView.addObject("mess", "New song created sucessfully");
-        return modelAndView;
-    }
+
+
 
     @GetMapping("delete/{id}")
     public String delete(@PathVariable Long id) {

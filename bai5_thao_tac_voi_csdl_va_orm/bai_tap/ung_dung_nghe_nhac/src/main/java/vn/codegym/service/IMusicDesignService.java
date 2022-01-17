@@ -9,5 +9,5 @@ public interface IMusicDesignService {
     MusicDesign findById(Long id);
     MusicDesign updateNew(MusicDesign musicDesign);
     void save(MusicDesign musicDesign);
-    void remove (Long musicDesign);
+    void remove (Long id);
 }
