@@ -21,6 +21,10 @@ import org.thymeleaf.spring4.SpringTemplateEngine;
 import org.thymeleaf.spring4.templateresolver.SpringResourceTemplateResolver;
 import org.thymeleaf.spring4.view.ThymeleafViewResolver;
 import org.thymeleaf.templatemode.TemplateMode;
+import vn.codegym.repository.IMusicDesignRepository;
+import vn.codegym.repository.impl.MusicDesignRepositoryImpl;
+import vn.codegym.service.IMusicDesignService;
+import vn.codegym.service.impl.MusicDesignServiceImpl;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -101,12 +105,15 @@ public class AppConfig extends WebMvcConfigurerAdapter implements ApplicationCon
         return transactionManager;
     }
 
+
     public Properties additionalProperties() {
         Properties properties = new Properties();
         properties.setProperty("hibernate.hbm2ddl.auto", "update");
         properties.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQL5Dialect");
         return properties;
     }
+
+
 
 
 }

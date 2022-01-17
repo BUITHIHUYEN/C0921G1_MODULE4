@@ -6,7 +6,7 @@ import org.hibernate.Transaction;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.RequestMapping;
 import vn.codegym.model.MusicDesign;
-import vn.codegym.repository.ConnectionUtil;
+//import vn.codegym.repository.ConnectionUtil;
 import vn.codegym.repository.IMusicDesignRepository;
 
 import javax.persistence.EntityManager;
@@ -21,13 +21,13 @@ public class MusicDesignRepositoryImpl implements IMusicDesignRepository {
     EntityManager entityManager;
     @Override
     public List<MusicDesign> findAll() {
-        TypedQuery<MusicDesign> query = ConnectionUtil.entityManager.createQuery("SELECT m FROM MusicDesign as m",MusicDesign.class);
+        TypedQuery<MusicDesign> query =entityManager.createQuery("SELECT m FROM MusicDesign as m",MusicDesign.class);
         return query.getResultList();
     }
 
     @Override
     public MusicDesign findById(Long id) {
-        TypedQuery<MusicDesign> query = ConnectionUtil.entityManager.createQuery("SELECT m FROM MusicDesign  as m where m.id = :id",MusicDesign.class);
+        TypedQuery<MusicDesign> query = entityManager.createQuery("SELECT m FROM MusicDesign  as m where m.id = :id",MusicDesign.class);
         query.setParameter("id",id);
         try {
             return query.getSingleResult();
@@ -41,10 +41,10 @@ public class MusicDesignRepositoryImpl implements IMusicDesignRepository {
         Session session = null;
         Transaction transaction = null;
         try {
-            session = ConnectionUtil.sessionFactory.openSession();
+            session = sessionFactory.openSession();
             transaction = session.beginTransaction();
             session.save(musicDesign);
-            session.saveOrUpdate(musicDesign);
+//            session.saveOrUpdate(musicDesign);
             transaction.commit();
 
         } catch (Exception exception) {
@@ -57,16 +57,16 @@ public class MusicDesignRepositoryImpl implements IMusicDesignRepository {
             }
 
         }
-        return null;
+        return musicDesign;
     }
 
     @Override
     public void save(MusicDesign musicDesign) {
-        if (musicDesign.getId()!=null){
-            entityManager.merge(musicDesign);
-        } else {
+//        if (musicDesign.getId()!=null){
+//            entityManager.merge(musicDesign);
+//        } else {
             entityManager.persist(musicDesign);
-        }
+//        }
     }
 
     @Override

@@ -14,8 +14,8 @@ public class MusicDesign implements Cloneable {
     public MusicDesign() {
     }
 
-    public MusicDesign(Long id, String nameOfTheSong, String singer) {
-        this.id = id;
+    public MusicDesign( String nameOfTheSong, String singer) {
+
         this.nameOfTheSong = nameOfTheSong;
         this.singer = singer;
     }

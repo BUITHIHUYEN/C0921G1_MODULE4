@@ -1,8 +1,8 @@
 package vn.codegym.controller;
 
-import com.sun.xml.bind.v2.model.core.ID;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.stereotype.Repository;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import vn.codegym.model.MusicDesign;
@@ -11,38 +11,39 @@ import vn.codegym.service.IMusicDesignService;
 import java.util.List;
 
 @Controller
-@RequestMapping("/musicDesignList")
 public class MusicDesignController {
+    @Autowired
     IMusicDesignService iMusicDesignService;
-    @GetMapping
+    @GetMapping("a")
     public ModelAndView showList() {
         List<MusicDesign> musicDesignList = iMusicDesignService.findAll();
-        ModelAndView modelAndView = new ModelAndView("/musicDesign/list");
+        ModelAndView modelAndView = new ModelAndView("list");
         modelAndView.addObject("musicDesignList", musicDesignList);
         return modelAndView;
     }
-
     @GetMapping("/create-musicDesign")
     public ModelAndView showCreateForm() {
 //        ModelAndView modelAndView = new ModelAndView("/musicDesign/create");
 //        modelAndView.addAllObjects("musicDesignList",new MusicDesign());
 //        return modelAndView;
-        return new ModelAndView("musicDesign/create", "musicDesign", new MusicDesign());
+        return new ModelAndView("create", "musicDesign", new MusicDesign());
     }
 
     @PostMapping("/create-musicDesign")
-    public ModelAndView saveMusicDesign(@ModelAttribute("musicDesignList") MusicDesign musicDesign) {
+    public String saveMusicDesign(@ModelAttribute("musicDesignList") MusicDesign musicDesign) {
         iMusicDesignService.save(musicDesign);
-        ModelAndView modelAndView = new ModelAndView("musicDesign/create");
-        modelAndView.addObject("musicDesignList", new MusicDesign());
-        modelAndView.addObject("mess", "New song created sucessfully");
-        return modelAndView;
+        return "redirect:/a";
+//        ModelAndView modelAndView = new ModelAndView("list");
+//        modelAndView.addObject("musicDesignList",musicDesign);
+//        modelAndView.addObject("mess", "New song created sucessfully");
+//        return modelAndView;
+
     }
 
 
     @GetMapping("{id}")
     public ModelAndView showInformation(@PathVariable Long id) {
-        ModelAndView modelAndView = new ModelAndView("musicDesignList/info");
+        ModelAndView modelAndView = new ModelAndView("info");
         MusicDesign musicDesign = iMusicDesignService.findById(id);
         modelAndView.addObject("musicDesignList", musicDesign);
         return modelAndView;
