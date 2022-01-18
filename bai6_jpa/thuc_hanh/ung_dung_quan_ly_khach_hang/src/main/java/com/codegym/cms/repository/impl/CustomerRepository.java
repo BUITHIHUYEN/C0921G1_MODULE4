@@ -2,6 +2,7 @@ package com.codegym.cms.repository.impl;
 
 import com.codegym.cms.model.Customer;
 import com.codegym.cms.repository.ICustomerRepository;
+import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
@@ -9,7 +10,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import javax.transaction.Transactional;
 import java.util.List;
-
+@Repository
 @Transactional
 public class CustomerRepository implements ICustomerRepository {
     @PersistenceContext

@@ -4,15 +4,13 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestMapping;
 import vn.codegym.model.MusicDesign;
 //import vn.codegym.repository.ConnectionUtil;
 import vn.codegym.repository.IMusicDesignRepository;
 
-import javax.persistence.EntityManager;
-import javax.persistence.NoResultException;
-import javax.persistence.PersistenceContext;
-import javax.persistence.TypedQuery;
+import javax.persistence.*;
 import java.util.List;
 @Repository
 public class MusicDesignRepositoryImpl implements IMusicDesignRepository {
@@ -59,13 +57,14 @@ public class MusicDesignRepositoryImpl implements IMusicDesignRepository {
         }
         return musicDesign;
     }
-
+@Transactional
     @Override
     public void save(MusicDesign musicDesign) {
         if (musicDesign.getId()!=null){
             entityManager.merge(musicDesign);
         } else {
             entityManager.persist(musicDesign);
+//            thêm mới
         }
     }
 

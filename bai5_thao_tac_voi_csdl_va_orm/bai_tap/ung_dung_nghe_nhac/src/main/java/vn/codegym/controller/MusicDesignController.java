@@ -30,13 +30,13 @@ public class MusicDesignController {
     }
 
     @PostMapping("/create-musicDesign")
-    public ModelAndView saveMusicDesign(@ModelAttribute("musicDesignList") MusicDesign musicDesign) {
+    public String saveMusicDesign(@ModelAttribute("musicDesignList") MusicDesign musicDesign) {
         iMusicDesignService.save(musicDesign);
-//        return "redirect:/a";
-        ModelAndView modelAndView = new ModelAndView("list");
-        modelAndView.addObject("musicDesignList",musicDesign);
-        modelAndView.addObject("mess", "New song created sucessfully");
-        return modelAndView;
+        return "redirect:/music";
+//        ModelAndView modelAndView = new ModelAndView("list");
+//        modelAndView.addObject("musicDesignList",musicDesign);
+//        modelAndView.addObject("mess", "New song created sucessfully");
+//        return modelAndView;
 
     }
 
