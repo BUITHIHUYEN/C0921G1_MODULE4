@@ -14,7 +14,7 @@ import java.util.List;
 public class MusicDesignController {
     @Autowired
     IMusicDesignService iMusicDesignService;
-    @GetMapping("a")
+    @GetMapping("/music")
     public ModelAndView showList() {
         List<MusicDesign> musicDesignList = iMusicDesignService.findAll();
         ModelAndView modelAndView = new ModelAndView("list");
@@ -30,13 +30,13 @@ public class MusicDesignController {
     }
 
     @PostMapping("/create-musicDesign")
-    public String saveMusicDesign(@ModelAttribute("musicDesignList") MusicDesign musicDesign) {
+    public ModelAndView saveMusicDesign(@ModelAttribute("musicDesignList") MusicDesign musicDesign) {
         iMusicDesignService.save(musicDesign);
-        return "redirect:/a";
-//        ModelAndView modelAndView = new ModelAndView("list");
-//        modelAndView.addObject("musicDesignList",musicDesign);
-//        modelAndView.addObject("mess", "New song created sucessfully");
-//        return modelAndView;
+//        return "redirect:/a";
+        ModelAndView modelAndView = new ModelAndView("list");
+        modelAndView.addObject("musicDesignList",musicDesign);
+        modelAndView.addObject("mess", "New song created sucessfully");
+        return modelAndView;
 
     }
 
@@ -54,7 +54,7 @@ public class MusicDesignController {
     @PostMapping
     public String updateMusicDesign(MusicDesign musicDesign) {
         iMusicDesignService.save(musicDesign);
-        return "redirect:/musicDesignList";
+        return "redirect:/music";
     }
 
 

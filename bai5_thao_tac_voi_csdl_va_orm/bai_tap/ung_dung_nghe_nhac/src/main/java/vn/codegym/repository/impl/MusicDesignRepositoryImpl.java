@@ -16,9 +16,9 @@ import javax.persistence.TypedQuery;
 import java.util.List;
 @Repository
 public class MusicDesignRepositoryImpl implements IMusicDesignRepository {
-    private static SessionFactory sessionFactory;
     @PersistenceContext
     EntityManager entityManager;
+    private static SessionFactory sessionFactory;
     @Override
     public List<MusicDesign> findAll() {
         TypedQuery<MusicDesign> query =entityManager.createQuery("SELECT m FROM MusicDesign as m",MusicDesign.class);
@@ -43,8 +43,8 @@ public class MusicDesignRepositoryImpl implements IMusicDesignRepository {
         try {
             session = sessionFactory.openSession();
             transaction = session.beginTransaction();
-            session.save(musicDesign);
-//            session.saveOrUpdate(musicDesign);
+//            session.save(musicDesign);
+            session.saveOrUpdate(musicDesign);
             transaction.commit();
 
         } catch (Exception exception) {
@@ -62,11 +62,11 @@ public class MusicDesignRepositoryImpl implements IMusicDesignRepository {
 
     @Override
     public void save(MusicDesign musicDesign) {
-//        if (musicDesign.getId()!=null){
-//            entityManager.merge(musicDesign);
-//        } else {
+        if (musicDesign.getId()!=null){
+            entityManager.merge(musicDesign);
+        } else {
             entityManager.persist(musicDesign);
-//        }
+        }
     }
 
     @Override
