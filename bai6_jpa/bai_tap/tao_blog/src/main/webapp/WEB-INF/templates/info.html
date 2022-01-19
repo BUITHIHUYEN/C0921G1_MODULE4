@@ -2,38 +2,9 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Music Song</title>
+    <title></title>
 </head>
 <body>
-<form action="/music" method="post">
-    <fieldset>
-        <legend>Music Song</legend>
-        <input type="hidden" name="id" th:value="${musicDesignList.id}">
-        <table>
-            <tr>
-                <td>Id</td>
-                <td th:text="${musicDesignList.id}"></td>
-            </tr>
-            <tr>
-                <td>Name Of The Song</td>
-                <td>
-                    <input type="text" name="nameOfTheSong" th:value="${musicDesignList.nameOfTheSong}">
-                </td>
-            </tr>
-            <tr>
-                <td>Singer</td>
-                <td>
-                    <input type="text" name="singer" th:value="${musicDesignList.singer}">
-                </td>
-            </tr>
-            <tr>
-                <td colspan="2">
-                    <input type="submit" value="Update">
-                </td>
-            </tr>
-        </table>
-    </fieldset>
-</form>
-<a href="/musicDesignList">Back to list</a>.
+
 </body>
 </html>

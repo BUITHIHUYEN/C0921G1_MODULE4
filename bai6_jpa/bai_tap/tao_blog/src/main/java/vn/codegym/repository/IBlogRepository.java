@@ -1,13 +1,12 @@
 package vn.codegym.repository;
 
+import org.springframework.data.jpa.repository.JpaRepository;
 import vn.codegym.model.Blog;
 
 import java.util.List;
+import java.util.Optional;
 
-public interface IBlogRepository {
-    List<Blog> findAll();
-    Blog findById(Long id);
-    Blog updateNew(Blog blog);
-    void save(Blog musicDesign);
-    void remove (Long id);
+public interface IBlogRepository extends JpaRepository<Blog,Integer> {
+
+//    Optional<Blog> findById(Integer id);
 }

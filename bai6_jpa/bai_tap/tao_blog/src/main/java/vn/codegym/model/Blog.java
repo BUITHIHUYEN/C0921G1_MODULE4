@@ -7,7 +7,7 @@ import javax.persistence.*;
 public class Blog {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private int id;
     private String name;
     private String title;
     private String content;
@@ -21,11 +21,11 @@ public class Blog {
         this.content = content;
     }
 
-    public Long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
 

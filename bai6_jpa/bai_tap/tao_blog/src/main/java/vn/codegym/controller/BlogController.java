@@ -32,30 +32,4 @@ public class BlogController {
         return new ModelAndView("create", "blogs", new Blog());
     }
 
-    @PostMapping("/create")
-    public ModelAndView saveMusicDesign(@ModelAttribute("blogs") Blog blog) {
-        iBlogService.save(blog);
-        ModelAndView modelAndView = new ModelAndView("list");
-        modelAndView.addObject("blogs",blog);
-        modelAndView.addObject("mess", "New song created sucessfully");
-        return modelAndView;
-
-    }
-
-
-    @GetMapping("{id}")
-    public ModelAndView showInformation(@PathVariable Long id) {
-        ModelAndView modelAndView = new ModelAndView("info");
-        Blog blog = iBlogService.findById(id);
-        modelAndView.addObject("blogs", blog);
-        return modelAndView;
-    }
-
-
-
-    @PostMapping
-    public String updateMusicDesign(Blog blog) {
-        iBlogService.save(blog);
-        return "redirect:/blog";
-    }
 }

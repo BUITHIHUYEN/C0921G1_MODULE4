@@ -25,15 +25,16 @@
         <th>Edit</th>
         <th>Delete</th>
     </tr>
-    <th:block th:each = "blog: ${blogs}">
-    <tr>
+
+    <tr th:each = "blog: ${blogs}">
         <td th:text="${blog.id}"></td>
         <td th:text="${blog.name}"></td>
         <td th:text="${blog.title}"></td>
         <td th:text="${blog.content}"></td>
-        <td><a th:href="@{/musicDesign/{id}(id=${blog.id})}" >Edit</a></td>
-        <td><a th:href="@{/musicDesign/delete/{id}(id=${blog.id})}" >Delete</a></td>
-    </tr></th:block>
+        <td><a th:href="@{/blog/{id}(id=${blog.id})}" >Edit</a></td>
+        <td><a th:href="@{/blog/delete/{id}(id=${blog.id})}" >Delete</a></td>
+    </tr>
+
 </table>
 </body>
 </html>

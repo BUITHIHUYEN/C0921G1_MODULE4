@@ -49,7 +49,11 @@ public class MusicDesignController {
         return modelAndView;
     }
 
-
+    @GetMapping("delete/{id}")
+    public String update(@PathVariable Long id) {
+        iMusicDesignService.remove(id);
+        return "redirect:/musicDesignList";
+    }
 
     @PostMapping
     public String updateMusicDesign(MusicDesign musicDesign) {
