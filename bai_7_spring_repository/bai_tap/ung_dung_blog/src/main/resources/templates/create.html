@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Create</title>
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/blogcss.css">
+</head>
+<body class="bg-secondary.bg-gradient">
+<div class="justify-content-center round">
+    <form action="/savenewblog" method="post" th:object="${newBlog}">
+        <input type="hidden" th:field="*{id}">
+        <div>
+            <label for="author">Author Name: </label><br>
+            <input type="text" id="author" th:field="*{authorName}">
+        </div>
+        <div>
+            <label for="title">Blog Title: </label><br>
+            <input type="text" id="title" th:field="*{title}">
+        </div>
+        <div>
+            <label for="content">Content:</label><br>
+            <textarea id="content" th:field="*{content}"></textarea>
+
+        </div>
+        <button type="submit">submit</button>
+    </form>
+</div>
+<script src="js/bootstrap.js"></script>
+</body>
+</html>

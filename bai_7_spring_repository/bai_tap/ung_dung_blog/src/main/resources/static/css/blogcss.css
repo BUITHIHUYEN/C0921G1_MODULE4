@@ -1,0 +1,24 @@
+.margin25-0 {
+    margin: 25px 0;
+}
+
+.addnew {
+    text-decoration: none;
+    background: cyan;
+    padding: 9px;
+    border-radius: 25px ;
+    box-shadow: 3px 3px 3px 15px gray;
+}
+
+label{
+    color: dodgerblue;
+}
+
+.round{
+    width: 70%;
+    margin: 10px auto;
+    border: 1px solid gray;
+    border-radius: 25px;
+    padding: 10px;
+}
+
