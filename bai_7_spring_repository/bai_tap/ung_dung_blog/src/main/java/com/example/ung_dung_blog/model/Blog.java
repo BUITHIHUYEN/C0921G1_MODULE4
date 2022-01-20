@@ -10,6 +10,9 @@ public class Blog {
     private int id;
     private String authorName;
     private String title;
+//    bên nhiều để many
+    @ManyToOne(targetEntity = Category.class)
+    private Category category;
 
     @Column(length = 99999)
     private String content;
