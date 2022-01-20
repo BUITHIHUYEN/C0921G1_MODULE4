@@ -25,14 +25,14 @@ public class MusicServiceImpl implements IMusicService {
     }
 
     @Override
-    public void save(User user) {
-        iMusicRepository.save(user);
+        public void save(Music music) {
+        iMusicRepository.save(music);
 
     }
 
     @Override
-    public void update(User user) {
-        iMusicRepository.save(user);
+    public void update(Music music) {
+        iMusicRepository.save(music);
 
     }
 }

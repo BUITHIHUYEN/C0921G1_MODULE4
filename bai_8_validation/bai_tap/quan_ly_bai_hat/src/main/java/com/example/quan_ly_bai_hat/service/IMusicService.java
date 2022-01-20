@@ -10,9 +10,9 @@ public interface IMusicService {
 
     Music findById(int id);
 
-    void save(User user);
+    void save(Music music);
 
-    void update(User user);
+    void update(Music music);
 
 
 }

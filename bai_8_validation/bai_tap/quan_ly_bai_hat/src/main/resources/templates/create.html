@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form action="/create" method="post" th:object="${music}">
+    <fieldset>
+        <legend>Music Design Information</legend>
+
+        <table>
+            <tr>
+                <td>Name Music</td>
+                <td>
+                    <input type="text" name="nameMusic" th:text="${music.getNameMusic()}">
+                </td>
+            </tr>
+            <tr>
+                <td>Singer</td>
+                <td>
+                    <input type="text" name="singer" th:text="${music.getSinger()}">
+                </td>
+                <td>
+                    <input type="text" name="typeMusic" th:text="${music.getTypeMusic()}">
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <input type="submit" value="Create">
+                </td>
+            </tr>
+        </table>
+    </fieldset>
+</form>
+<a href="">Back to list</a>.
+
+</body>
+</html>
