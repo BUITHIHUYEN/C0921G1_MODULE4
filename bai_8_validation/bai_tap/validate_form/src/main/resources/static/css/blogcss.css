@@ -2,14 +2,12 @@
     margin: 25px 0;
 }
 
-
-
-.addnewblog {
+.addnew {
     text-decoration: none;
-    background: #59ffff;
+    background: cyan;
     padding: 9px;
     border-radius: 25px ;
-    border: 1px solid coral;
+    box-shadow: 3px 3px 3px 15px gray;
 }
 
 label{
