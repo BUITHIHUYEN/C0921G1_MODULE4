@@ -5,25 +5,28 @@
     <title>Title</title>
 </head>
 <body>
-<form action="/create" method="post" th:object="${music}">
+<th:block th:if="${message}">
+    <p style="color:green;" th:text="${message}"></p>
+</th:block>
+<form th:action="@{/create}" th:object="${music}" method="post">
     <fieldset>
         <legend>Music Design Information</legend>
 
         <table>
             <tr>
-                <td>Name Music</td>
-                <td>
-                    <input type="text" name="nameMusic" th:text="${music.getNameMusic()}">
-                </td>
+                <td>Name :</td>
+                <td><input type="text" th:field="*{nameMusic}"/></td>
+                <td style="color: red" th:if="${#fields.hasErrors('nameMusic')}" th:errors="*{nameMusic}" ></td>
             </tr>
             <tr>
-                <td>Singer</td>
-                <td>
-                    <input type="text" name="singer" th:text="${music.getSinger()}">
-                </td>
-                <td>
-                    <input type="text" name="typeMusic" th:text="${music.getTypeMusic()}">
-                </td>
+                <td>Singer:</td>
+                <td><input type="text" th:field="*{singer}"/>
+                <td style="color: red" th:if="${#fields.hasErrors('singer')}" th:errors="*{singer}" ></td>
+            </tr>
+            <tr>
+                <td>Type Music:</td>
+                <td><input type="text" th:field="*{typeMusic}"/>
+                <td style="color: red" th:if="${#fields.hasErrors('typeMusic')}" th:errors="*{typeMusic}" ></td>
             </tr>
             <tr>
                 <td colspan="2">
@@ -33,7 +36,7 @@
         </table>
     </fieldset>
 </form>
-<a href="">Back to list</a>.
+<a href="/list">Back to list</a>.
 
 </body>
 </html>

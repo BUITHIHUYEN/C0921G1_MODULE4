@@ -5,30 +5,35 @@
     <title>Music Song</title>
 </head>
 <body>
-<form action="/update" method="post">
+<th:block th:if="${message}">
+    <p style="color:green;" th:text="${message}"></p>
+</th:block>
+<form th:action="@{/update}" th:object="${musicDto}" method="post">
     <fieldset>
         <legend>Music Song</legend>
-        <input type="hidden" name="id" th:value="${music.id}">
+
         <table>
             <tr>
-                <td>Id</td>
-                <td th:text="${music.id}"></td>
-            </tr>
-            <tr>
-                <td>Name Music</td>
                 <td>
-                    <input type="text" name="nameMusic" th:value="${music.nameMusic}">
+                <input type="hidden" name="id" th:field="*{id}"/>
                 </td>
             </tr>
             <tr>
-                <td>Singer</td>
-                <td>
-                    <input type="text" name="singer" th:value="${music.singer}">
-                </td>
-                <td>
-                    <input type="text" name="typeMusic" th:value="${music.typeMusic}">
-                </td>
+                <td>Name :</td>
+                <td><input type="text" th:field="*{nameMusic}"/></td>
+                <td style="color: red" th:if="${#fields.hasErrors('nameMusic')}" th:errors="*{nameMusic}" ></td>
             </tr>
+            <tr>
+                <td>Singer:</td>
+                <td><input type="text" th:field="*{singer}"/>
+                <td style="color: red" th:if="${#fields.hasErrors('singer')}" th:errors="*{singer}" ></td>
+            </tr>
+            <tr>
+                <td>Type:</td>
+                <td><input type="text" th:field="*{typeMusic}"/>
+                <td style="color: red" th:if="${#fields.hasErrors('typeMusic')}" th:errors="*{typeMusic}" ></td>
+            </tr>
+            <tr>
             <tr>
                 <td colspan="2">
                     <input type="submit" value="Update">
@@ -37,6 +42,6 @@
         </table>
     </fieldset>
 </form>
-<a href="/create">Back to list</a>.
+<a href="/list">Back to list</a>.
 </body>
 </html>

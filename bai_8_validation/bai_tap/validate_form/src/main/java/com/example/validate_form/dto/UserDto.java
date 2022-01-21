@@ -1,25 +1,30 @@
-package com.example.validate_form.model;
-import org.springframework.validation.Errors;
-import org.springframework.validation.ValidationUtils;
-import org.springframework.validation.Validator;
+package com.example.validate_form.dto;
 
-import javax.persistence.*;
+import javax.validation.constraints.*;
 
-@Entity
-public class User {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class UserDto {
     private int id;
+    @NotBlank(message = "không để trống")
+    @Size(min=5,max = 45 ,message = "first name từ 5 đến 45 kí tự")
     private String firstName;
+    @NotBlank(message = " không để trống")
+    @Size(min=5,max = 45)
     private String lastName;
+    @NotBlank(message = "số điện thoại không đươc để trống ")
+    @Pattern(regexp = "\\d{10,11}", message = "phone không đúng định dạng")
     private String phoneNumber;
+    @NotNull(message = "Không được để trống")
+    @Min(18)
     private Integer age;
+    @NotBlank(message = "Không được để trống")
+    @Email
     private String email;
 
-    public User() {
+    public UserDto() {
     }
 
-    public User(String firstName, String lastName, String phoneNumber, Integer age, String email) {
+    public UserDto(@NotBlank(message = "không để trống") @Size(min = 5, max = 45, message = "first name từ 5 đến 45 kí tự") String firstName, @NotBlank(message = " không để trống") @Size(min = 5, max = 45) String lastName, @NotBlank(message = "số điện thoại không đươc để trống ")
+    @Pattern(regexp = "\\d{10,11}", message = "phone không đúng định dạng") String phoneNumber, @NotBlank(message = "Không được để trống") @Min(18) Integer age, @NotBlank(message = "Không được để trống") @Email String email) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.phoneNumber = phoneNumber;
@@ -74,5 +79,4 @@ public class User {
     public void setEmail(String email) {
         this.email = email;
     }
-
 }
