@@ -11,7 +11,7 @@
     <div class="container">
             <h2 class="text-center text-decoration-underline text-primary"> BLOG LIST</h2>
 
-        <h4 class="text-success" th:text="${msg}"></h4>
+        <h4 class="text-success" th:text="${#messages}"></h4>
 
 
         <div class="margin25-0 ">
@@ -21,20 +21,30 @@
             <tr class="bg-primary text-white fw-bold text-white">
                 <td> Author</td>
                 <td> Blog Title</td>
+                <td>Category</td>
                 <td colspan="3"> Action</td>
             </tr>
-            <tr th:each="myblog: ${blogs}">
-                <td th:text="${myblog.authorName}"></td>
-                <td th:text="${myblog.title}"></td>
-                <td><a class="text-decoration-none text-primary fw-bold" th:href="@{{id}/read/(id=${myblog.id})}">
+            <tr th:each="blog: ${blog}">
+                <td th:text="${blog.authorName}"></td>
+                <td th:text="${blog.ti}"></td>
+                <td th:text="${blog.content}"></td>
+                <td th:text="${blog.category.name}"></td>
+                <td><a class="text-decoration-none text-primary fw-bold" th:href="@{{id}/read/(id=${blog.id})}">
                     Read </a></td>
-                <td><a class="text-decoration-none text-warning fw-bold" th:href="@{{id}/update/(id=${myblog.id})}">
+                <td><a class="text-decoration-none text-warning fw-bold" th:href="@{{id}/update/(id=${blog.id})}">
                     Update </a></td>
-                <td><a class="text-decoration-none text-danger fw-bold" th:href="@{{id}/delete/(id=${myblog.id})}">
+                <td><a class="text-decoration-none text-danger fw-bold" th:href="@{{id}/delete/(id=${blog.id})}">
                     Delete </a></td>
 
             </tr>
         </table>
+    </div>
+    <div>
+        <a th:href="@{'/list'(page=${blog.number - 1}, name=${name}, categoryId=${categoryId})}"
+           th:if="${blog.hasPrevious()}">Previous</a>
+        <span th:text="${blog.number + 1}"></span>/<span th:text="${blog.totalPages}"></span>
+        <a th:href="@{'/list'(page=${blog.number + 1}, name=${name}, categoryId=${categoryId})}"
+           th:if="${blog.hasNext()}">Next</a>
     </div>
 </div>
 <script src="js/bootstrap.js"></script>
