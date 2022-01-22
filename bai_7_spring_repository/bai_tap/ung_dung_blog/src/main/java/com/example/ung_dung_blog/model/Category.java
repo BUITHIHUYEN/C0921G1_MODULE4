@@ -10,10 +10,16 @@ public class Category {
     private int categoryId;
     private String name;
 //    bên này 1 để one,bên nhiều để many
+
     @OneToMany(mappedBy = "category")
     private List<Blog> blogs;
 
     public Category() {
+    }
+
+    public Category( String name, List<Blog> blogs) {
+        this.name = name;
+        this.blogs = blogs;
     }
 
     public int getCategoryId() {

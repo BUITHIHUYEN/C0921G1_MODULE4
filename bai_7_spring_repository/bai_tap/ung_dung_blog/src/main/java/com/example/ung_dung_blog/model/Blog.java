@@ -3,7 +3,6 @@ package com.example.ung_dung_blog.model;
 import javax.persistence.*;
 
 @Entity
-@Table
 public class Blog {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,6 +23,14 @@ public class Blog {
         this.authorName = authorName;
         this.title = title;
         this.content = content;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
     }
 
     public int getId() {

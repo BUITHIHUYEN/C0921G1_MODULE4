@@ -23,15 +23,18 @@ import java.util.Optional;
 @Controller
 public class BlogController {
 
-    @Qualifier("IBlogService")
     @Autowired
-   private IBlogService iBlogService;
+    private IBlogService iBlogService;
+
     @Autowired
     private ICategoryService iCategoryService;
 
     @GetMapping("/blog")
-    public String showList(  Optional<String> name,Optional<Integer> categoryId
-            , Model model, @PageableDefault(size = 2) Pageable pageable) {
+    public String showList(Optional<String> name,
+                           Optional<Integer> categoryId,
+                           Model model,
+                           @PageableDefault(size = 2) Pageable pageable) {
+
         model.addAttribute("category", iCategoryService.findAll());
         if (!name.isPresent() || name.get().equals("")) {
             if (!categoryId.isPresent()) {
@@ -47,7 +50,7 @@ public class BlogController {
             } else {
                 model.addAttribute("name", name.get());
                 model.addAttribute("categoryId", categoryId.get());
-                model.addAttribute("blog", iBlogService.findByNameAndCategoryId(name.get(), categoryId.get(), pageable));
+                model.addAttribute("blog", iBlogService.findByAuthorNameContainingAndCategory(name.get(), categoryId.get(), pageable));
             }
         }
         return "list";
@@ -55,21 +58,22 @@ public class BlogController {
 
     @GetMapping("/create")
     public String showCreateForm(Model model) {
-        model.addAttribute("blog",new Blog());
-        model.addAttribute("category",iCategoryService.findAll());
+        model.addAttribute("blog", new Blog());
+        model.addAttribute("category", iCategoryService.findAll());
         return "create";
     }
+
     @PostMapping("/create")
-    public String create(@ModelAttribute Blog blog, RedirectAttributes redirectAttributes){
+    public String create(@ModelAttribute Blog blog, RedirectAttributes redirectAttributes) {
         iBlogService.save(blog);
-        redirectAttributes.addFlashAttribute("message","OK!!!!!!!");
+        redirectAttributes.addFlashAttribute("message", "OK!!!!!!!");
         return "redirect:/list";
     }
 
     @GetMapping("{id}/update")
-    public String showUpdate(Model model, @PathVariable Integer id){
-        model.addAttribute("blog",iBlogService.findById(id));
-        model.addAttribute("category",iCategoryService.findAll());
+    public String showUpdate(Model model, @PathVariable Integer id) {
+        model.addAttribute("blog", iBlogService.findById(id));
+        model.addAttribute("category", iCategoryService.findAll());
         return "update";
     }
 
@@ -81,16 +85,16 @@ public class BlogController {
     }
 
     @GetMapping("{id}/delete")
-    public String delete(@PathVariable int id, RedirectAttributes redirectAttributes){
+    public String delete(@PathVariable int id, RedirectAttributes redirectAttributes) {
         iBlogService.delete(id);
         redirectAttributes.addFlashAttribute("message", "delete Ok!!!!!!!");
         return "redirect:/blog";
     }
 
     @GetMapping("createnewblog")
-    public ModelAndView create (ModelAndView modelAndView){
-        modelAndView =new ModelAndView("create");
-        modelAndView.addObject("newBlog",new Blog());
+    public ModelAndView create(ModelAndView modelAndView) {
+        modelAndView = new ModelAndView("create");
+        modelAndView.addObject("newBlog", new Blog());
         return modelAndView;
     }
 

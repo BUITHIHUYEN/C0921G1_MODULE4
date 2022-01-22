@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
-@Service
+
 public interface IBlogService {
     List<Blog> findAll();
 
@@ -22,5 +22,5 @@ public interface IBlogService {
 
     Page<Blog> findByCategory(int categoryId, Pageable pageable);
 
-    Page<Blog> findByNameAndCategoryId(String name, int categoryId, Pageable pageable);
+    Page<Blog> findByAuthorNameContainingAndCategory(String authorName, int categoryId, Pageable pageable);
 }

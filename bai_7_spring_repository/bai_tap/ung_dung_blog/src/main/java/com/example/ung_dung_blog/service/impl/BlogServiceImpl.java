@@ -44,7 +44,7 @@ public class BlogServiceImpl implements IBlogService {
 
     @Override
     public Page<Blog> findByName(String name, Pageable pageable) {
-        return iBlogRepository.findByName(name,pageable);
+        return iBlogRepository.findByAuthorNameContaining(name,pageable);
     }
 
     @Override
@@ -53,7 +53,7 @@ public class BlogServiceImpl implements IBlogService {
     }
 
     @Override
-    public Page<Blog> findByNameAndCategoryId(String name, int categoryId, Pageable pageable) {
-        return iBlogRepository.findByNameAndCategoryId(name,categoryId,pageable);
+    public Page<Blog> findByAuthorNameContainingAndCategory(String name, int categoryId, Pageable pageable) {
+        return iBlogRepository.findByAuthorNameContainingAndCategory(name,categoryId,pageable);
     }
 }

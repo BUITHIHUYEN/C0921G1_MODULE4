@@ -24,16 +24,16 @@
                 <td>Category</td>
                 <td colspan="3"> Action</td>
             </tr>
-            <tr th:each="blog: ${blog}">
-                <td th:text="${blog.authorName}"></td>
-                <td th:text="${blog.ti}"></td>
-                <td th:text="${blog.content}"></td>
-                <td th:text="${blog.category.name}"></td>
-                <td><a class="text-decoration-none text-primary fw-bold" th:href="@{{id}/read/(id=${blog.id})}">
+            <tr th:each="myBlog: ${blog}">
+                <td th:text="${myBlog.authorName}"></td>
+                <td th:text="${myBlog.title}"></td>
+                <td th:text="${myBlog.content}"></td>
+                <td th:text="${myBlog.category.name}"></td>
+                <td><a class="text-decoration-none text-primary fw-bold" th:href="@{{id}/read/(id=${myBlog.id})}">
                     Read </a></td>
-                <td><a class="text-decoration-none text-warning fw-bold" th:href="@{{id}/update/(id=${blog.id})}">
+                <td><a class="text-decoration-none text-warning fw-bold" th:href="@{{id}/update/(id=${myBlog.id})}">
                     Update </a></td>
-                <td><a class="text-decoration-none text-danger fw-bold" th:href="@{{id}/delete/(id=${blog.id})}">
+                <td><a class="text-decoration-none text-danger fw-bold" th:href="@{{id}/delete/(id=${myBlog.id})}">
                     Delete </a></td>
 
             </tr>
