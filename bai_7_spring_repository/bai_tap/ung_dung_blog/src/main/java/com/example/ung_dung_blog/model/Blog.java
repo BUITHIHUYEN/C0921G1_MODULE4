@@ -7,7 +7,7 @@ public class Blog {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private String authorName;
+    private String name;
     private String title;
 //    bên nhiều để many
     @ManyToOne(targetEntity = Category.class)
@@ -19,8 +19,8 @@ public class Blog {
     public Blog() {
     }
 
-    public Blog(String authorName, String title, String content) {
-        this.authorName = authorName;
+    public Blog(String name, String title, String content) {
+        this.name = name;
         this.title = title;
         this.content = content;
     }
@@ -41,12 +41,12 @@ public class Blog {
         this.id = id;
     }
 
-    public String getAuthorName() {
-        return authorName;
+    public String getName() {
+        return name;
     }
 
-    public void setAuthorName(String name) {
-        this.authorName = name;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getTitle() {
@@ -69,7 +69,7 @@ public class Blog {
     public String toString() {
         return "Blog{" +
                 "id=" + id +
-                ", name='" + authorName + '\'' +
+                ", name='" + name + '\'' +
                 ", title='" + title + '\'' +
                 ", content='" + content + '\'' +
                 '}';

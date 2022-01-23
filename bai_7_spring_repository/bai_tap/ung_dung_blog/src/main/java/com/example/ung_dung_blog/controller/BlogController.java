@@ -50,7 +50,7 @@ public class BlogController {
             } else {
                 model.addAttribute("name", name.get());
                 model.addAttribute("categoryId", categoryId.get());
-                model.addAttribute("blog", iBlogService.findByAuthorNameContainingAndCategory(name.get(), categoryId.get(), pageable));
+                model.addAttribute("blog", iBlogService.findByNameAndCategory(name.get(), categoryId.get(), pageable));
             }
         }
         return "list";
@@ -58,8 +58,8 @@ public class BlogController {
 
     @GetMapping("/create")
     public String showCreateForm(Model model) {
-        model.addAttribute("blog", new Blog());
         model.addAttribute("category", iCategoryService.findAll());
+        model.addAttribute("blog", new Blog());
         return "create";
     }
 
