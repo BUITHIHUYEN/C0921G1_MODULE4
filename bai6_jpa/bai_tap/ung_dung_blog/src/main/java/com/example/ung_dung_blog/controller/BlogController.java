@@ -4,7 +4,6 @@ import com.example.ung_dung_blog.model.Blog;
 import com.example.ung_dung_blog.service.IBlogService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -17,7 +16,7 @@ import java.util.List;
 public class BlogController {
 
     @Autowired
-    IBlogService iBlogService;
+  private IBlogService iBlogService;
 
     @GetMapping("/blog")
     public ModelAndView showList(RedirectAttributes redirectAttributes) {
@@ -79,4 +78,5 @@ public class BlogController {
         redirectAttributes.addFlashAttribute("msg", "create blog success");
         return "redirect:/blog";
     }
+
 }
