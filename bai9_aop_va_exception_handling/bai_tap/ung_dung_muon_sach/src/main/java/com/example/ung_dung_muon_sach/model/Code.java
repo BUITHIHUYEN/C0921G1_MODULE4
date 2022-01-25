@@ -10,8 +10,9 @@ public class Code {
     private Long id;
     private String code;
 
-    @OneToMany(mappedBy = "code")
-    private List<BookManager> bookManagers;
+    @ManyToOne(targetEntity = BookManager.class)
+    private BookManager bookManagers;
+
     public Code() {
     }
 
@@ -31,11 +32,11 @@ public class Code {
         this.code = code;
     }
 
-    public List<BookManager> getBookManagers() {
+    public BookManager getBookManagers() {
         return bookManagers;
     }
 
-    public void setBookManagers(List<BookManager> bookManagers) {
+    public void setBookManagers(BookManager bookManagers) {
         this.bookManagers = bookManagers;
     }
 }

@@ -20,4 +20,9 @@ public class BookManagerServiceImpl implements IBookManagerService {
     public BookManager findById(Long id) {
         return iBookManagerRepository.findById(id).orElse(null);
     }
+
+    @Override
+    public void save(BookManager bookManager) {
+        iBookManagerRepository.save(bookManager);
+    }
 }

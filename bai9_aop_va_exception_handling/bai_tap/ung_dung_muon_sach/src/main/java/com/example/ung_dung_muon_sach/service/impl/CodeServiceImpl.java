@@ -12,7 +12,7 @@ public class CodeServiceImpl implements ICodeService {
     private ICodeRepository iCodeRepository;
 
     @Override
-    public void create(Code code) {
+    public void save(Code code) {
         iCodeRepository.save(code);
     }
 

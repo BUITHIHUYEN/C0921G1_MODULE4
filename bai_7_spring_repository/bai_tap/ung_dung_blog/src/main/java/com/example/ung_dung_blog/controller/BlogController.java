@@ -70,6 +70,14 @@ public class BlogController {
         return "redirect:/list";
     }
 
+    @GetMapping("{id}/read")
+    public ModelAndView read(@PathVariable int id, ModelAndView modelAndView) {
+        modelAndView = new ModelAndView("read");
+        Blog blog = iBlogService.findById(id).get();
+        modelAndView.addObject("readBlog", blog);
+        return modelAndView;
+    }
+
     @GetMapping("{id}/update")
     public String showUpdate(Model model, @PathVariable Integer id) {
         model.addAttribute("blog", iBlogService.findById(id));

@@ -11,8 +11,8 @@ public interface IBlogRepository extends JpaRepository<Blog, Integer> {
 //    Blog:tên class ,Integer kiểu dữ liệu của khóa cính
     Page<Blog>findByNameContaining(String name, Pageable pageable);
 
-    Page<Blog> findByCategoryId(Integer categoryId, Pageable pageable);
+    Page<Blog> findByCategory_CategoryId(Integer categoryId, Pageable pageable);
 
-    Page<Blog> findByNameContainingAndCategoryId(String name, int categoryId, Pageable pageable);
+    Page<Blog> findByNameContainingAndCategory_CategoryId(String name, int categoryId, Pageable pageable);
 
 }

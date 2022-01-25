@@ -1,6 +1,7 @@
 package com.example.ung_dung_muon_sach.model;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class BookManager {
@@ -9,8 +10,10 @@ public class BookManager {
     private Long id;
     private String name;
     private int theRemainingAmount;
-    @ManyToOne(targetEntity = Code.class)
-    private Code code;
+
+    @OneToMany(mappedBy = "bookManagers")
+    private List<Code> codes;
+
     public BookManager() {
     }
 
@@ -38,11 +41,11 @@ public class BookManager {
         this.theRemainingAmount = theRemainingAmount;
     }
 
-    public Code getCode() {
-        return code;
+    public List<Code> getCodes() {
+        return codes;
     }
 
-    public void setCode(Code code) {
-        this.code = code;
+    public void setCodes(List<Code> codes) {
+        this.codes = codes;
     }
 }

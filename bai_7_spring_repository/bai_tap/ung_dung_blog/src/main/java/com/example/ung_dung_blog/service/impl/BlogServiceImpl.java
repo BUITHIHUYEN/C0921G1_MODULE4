@@ -49,12 +49,12 @@ public class BlogServiceImpl implements IBlogService {
 
     @Override
     public Page<Blog> findByCategory(int categoryId, Pageable pageable) {
-        return iBlogRepository.findByCategoryId(categoryId,pageable);
+        return iBlogRepository.findByCategory_CategoryId(categoryId,pageable);
     }
 
     @Override
     public Page<Blog> findByNameAndCategory(String name, int categoryId, Pageable pageable) {
-        return null;
+        return iBlogRepository.findByNameContainingAndCategory_CategoryId(name,categoryId,pageable);
     }
 
 }

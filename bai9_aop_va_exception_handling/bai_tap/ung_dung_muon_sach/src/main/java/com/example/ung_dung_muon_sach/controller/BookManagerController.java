@@ -9,16 +9,13 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import javax.validation.constraints.Pattern;
-import java.util.List;
-
 @Controller
 public class BookManagerController {
     @Autowired
     private IBookManagerService iBookManagerService;
     @Autowired
     private ICodeService iCodeService;
-    @GetMapping("/blog")
+    @GetMapping("/book")
     public ModelAndView showList() {
         return new ModelAndView("list", "bookManagerList", iBookManagerService.findAll());
     }
