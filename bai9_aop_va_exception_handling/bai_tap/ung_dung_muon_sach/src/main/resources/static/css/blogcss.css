@@ -1,0 +1,26 @@
+.margin25-0 {
+    margin: 25px 0;
+}
+
+
+
+.addnewblog {
+    text-decoration: none;
+    background: #59ffff;
+    padding: 9px;
+    border-radius: 25px ;
+    border: 1px solid coral;
+}
+
+label{
+    color: dodgerblue;
+}
+
+.round{
+    width: 70%;
+    margin: 10px auto;
+    border: 1px solid gray;
+    border-radius: 25px;
+    padding: 10px;
+}
+

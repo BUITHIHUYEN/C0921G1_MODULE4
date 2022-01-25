@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/blogcss.css">
+</head>
+<body>
+<div>
+    <div class="container">
+            <h2 class="text-center text-decoration-underline text-primary"> BOOK LIST</h2>
+
+        <h4 class="text-success" th:text="${msg}"></h4>
+
+
+        <div class="margin25-0 ">
+            <a class="addnewblog" href="/createnewblog"> Create new blog</a>
+        </div>
+        <table class="table table-striped table-hover">
+            <tr class="bg-primary text-white fw-bold text-white">
+                <td> Name</td>
+                <td> The Remaining Amount</td>
+                <td>Code</td>
+                <td colspan="3"> Action</td>
+            </tr>
+            <tr th:each="mybook: ${bookManagers}">
+                <td th:text="${mybook.name}"></td>
+                <td th:text="${mybook.theRemainingAmount}"></td>
+                <td th:text="${mybook.code}"></td>
+                <td><a class="text-decoration-none text-primary fw-bold" th:href="@{{id}/read/(id=${mybook.id})}">
+                    Read </a></td>
+                <td><a class="text-decoration-none text-danger fw-bold" th:href="@{{id}/delete/(id=${mybook.id})}">
+                    Delete </a></td>
+
+            </tr>
+        </table>
+    </div>
+</div>
+<script src="js/bootstrap.js"></script>
+</body>
+</html>
